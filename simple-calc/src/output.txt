@@ -1,0 +1,128 @@
+// when payload is "hi"
+[
+    HumanMessage {
+        "id": "c91670ed-19ab-4767-b787-fb740afa2153",
+        "content": "hi",
+        "additional_kwargs": {},
+        "response_metadata": {}
+    },
+    AIMessage {
+        "id": "1d618de0-37a0-4de2-9a49-ceafa7bd14e4",
+        "content": "Hello! How may I help you?\n",
+        "additional_kwargs": {
+        "finishReason": "STOP",
+        "avgLogprobs": -0.06979363494449192
+        },
+        "response_metadata": {
+        "finishReason": "STOP",
+        "avgLogprobs": -0.06979363494449192
+        },
+        "tool_calls": [],
+        "invalid_tool_calls": [],
+        "usage_metadata": {
+        "input_tokens": 52,
+        "output_tokens": 9,
+        "total_tokens": 61
+        }
+    }
+]
+
+
+// when payload is "add 3 and 4"
+[
+  HumanMessage {
+    "id": "deec6509-111d-441d-9caa-1ee416908553",
+    "content": "add 3 and 4",
+    "additional_kwargs": {},
+    "response_metadata": {}
+  },
+  AIMessage {
+    "id": "6cff9ff1-90fc-4cd9-92b7-0d12718fb234",
+    "content": [
+      {
+        "functionCall": {
+          "name": "add",
+          "args": "[Object]"
+        }
+      }
+    ],
+    "additional_kwargs": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.36651337146759033
+    },
+    "response_metadata": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.36651337146759033
+    },
+    "tool_calls": [
+      {
+        "name": "add",
+        "args": {
+          "b": 4,
+          "a": 3
+        },
+        "type": "tool_call"
+      }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+      "input_tokens": 57,
+      "output_tokens": 3,
+      "total_tokens": 60
+    }
+  },
+  AIMessage {
+    "id": "4568bd4b-b9ea-43f0-b703-0d0445a82be4",
+    "content": [
+      {
+        "functionCall": {
+          "name": "add",
+          "args": "[Object]"
+        }
+      }
+    ],
+    "additional_kwargs": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.3874254624048869
+    },
+    "response_metadata": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.3874254624048869
+    },
+    "tool_calls": [
+      {
+        "name": "add",
+        "args": {
+          "a": 3,
+          "b": 4
+        },
+        "type": "tool_call"
+      }
+    ],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+      "input_tokens": 60,
+      "output_tokens": 3,
+      "total_tokens": 63
+    }
+  },
+  AIMessage {
+    "id": "dc69b0b5-e40c-445b-ba5e-0d7ac93c7ede",
+    "content": "The result is 7.",
+    "additional_kwargs": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.037351906299591064
+    },
+    "response_metadata": {
+      "finishReason": "STOP",
+      "avgLogprobs": -0.037351906299591064
+    },
+    "tool_calls": [],
+    "invalid_tool_calls": [],
+    "usage_metadata": {
+      "input_tokens": 63,
+      "output_tokens": 6,
+      "total_tokens": 69
+    }
+  }
+]
