@@ -2,15 +2,15 @@ version: "3.8"
 
 services:
   chromadb:
-    image: ghcr.io/chroma-core/chroma:latest
+    image: chromadb/chroma
     container_name: chromadb
     restart: unless-stopped
     ports:
       - "8000:8000"
-    volumes:
-      - chromadb_data:/chroma/.chroma/index
-    environment:
-      - IS_PERSISTENT=TRUE
+    # volumes:
+    #   - chromadb_data:/chroma/.chroma/index
+    # environment:
+    #   - IS_PERSISTENT=TRUE
 
-volumes:
-  chromadb_data:
+# volumes:
+#   chromadb_data:
