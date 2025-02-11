@@ -1,41 +1,37 @@
-import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
-import { eq } from "drizzle-orm";
-import { usersTable } from "./schema";
+import db from "./index";
+import { todos } from "./schema";
 
-const db = drizzle(process.env.DATABASE_URL!);
+async function seed() {
+  try {
+    // Insert sample todos
+    await db.insert(todos).values([
+      {
+        title: "Complete project documentation",
+        description: "Write comprehensive documentation for the new features",
+      },
+      {
+        title: "Review pull requests",
+        description: "Review and merge pending pull requests",
+      },
+      {
+        title: "Setup testing environment",
+        description: "Configure Jest and write initial test cases",
+      },
+      {
+        title: "Update dependencies",
+        description: "Update all npm packages to their latest versions",
+      },
+      {
+        title: "Fix security vulnerabilities",
+        description: "Address security issues reported by dependency scan",
+      },
+    ]);
 
-async function main() {
-  const user: typeof usersTable.$inferInsert = {
-    name: "John",
-    age: 30,
-    email: "john@example.com",
-  };
-
-  await db.insert(usersTable).values(user);
-  console.log("New user created!");
-
-  const users = await db.select().from(usersTable);
-  console.log("Getting all users from the database: ", users);
-  /*
-  const users: {
-    id: number;
-    name: string;
-    age: number;
-    email: string;
-  }[]
-  */
-
-  await db
-    .update(usersTable)
-    .set({
-      age: 31,
-    })
-    .where(eq(usersTable.email, user.email));
-  console.log("User info updated!");
-
-//   await db.delete(usersTable).where(eq(usersTable.email, user.email));
-//   console.log("User deleted!");
+    console.log("Seed data inserted successfully");
+  } catch (error) {
+    console.error("Error seeding data:", error);
+  }
 }
 
-main();
+// Run the seed function
+seed().catch(console.error);
